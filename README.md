@@ -22,3 +22,26 @@ Ho da fare un progetto de cazz, di seguito cosa è richiesto:
 •	Recap di cosa devo ancora fare
 
 •	Se mi ricordo pure i vari sorgenti
+
+
+
+# PAGINE HTML
+
+-Main
+  -pagina dinamica che mostra i corsi
+  -pagina dinamica che mostra i singoli insegnimenti
+  -pagina di Login
+ 
+-Main segreteria
+  -Crea corsi, insegnamenti
+  -Crea, mod, elimina utenti
+  
+-Main Docente
+  -Visualizza insegnamenti
+  -Crea appelli
+  
+-Main Studente
+  -Visualizza corso
+  -Visualizza carriera
+  -Iscrizione esami
+  
