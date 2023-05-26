@@ -27,10 +27,11 @@ Ho da fare un progetto de cazz, di seguito cosa è richiesto:
 
 # PAGINE HTML
 
--Main
-  -pagina dinamica che mostra i corsi
+-Main #(da finire)
+  -pagina dinamica che mostra i corsi #(manca il dinamismo)
   -pagina dinamica che mostra i singoli insegnimenti
-  -pagina di Login
+  # -pagina di Login
+  -contatti
  
 -Main segreteria
   -Crea corsi, insegnamenti
