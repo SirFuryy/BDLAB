@@ -43,7 +43,7 @@ CREATE TABLE "Studente" (
   "codice_fiscale" varchar(16) UNIQUE NOT NULL,
   "domicilio" varchar(70),
   "data_iscrizione" timestamp NOT NULL,
-  "corso_laurea" varchar(6) NOT NULL
+  "corso_laurea" char(6) NOT NULL
 );
 
 CREATE TABLE "Storico_studente" (
