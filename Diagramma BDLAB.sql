@@ -1,5 +1,5 @@
 CREATE TABLE "Segreteria" (
-  "id_segreteria" smallserial PRIMARY KEY,
+  "id_segreteria" serial PRIMARY KEY,
   "nome" varchar(20) NOT NULL,
   "cognome" varchar(30) NOT NULL,
   "email" varchar(30) UNIQUE NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE "Segreteria" (
 );
 
 CREATE TABLE "Docente" (
-  "id_docente" smallserial PRIMARY KEY,
+  "id_docente" serial PRIMARY KEY,
   "nome" varchar(20) NOT NULL,
   "cognome" varchar(30) NOT NULL,
   "email" varchar(30) UNIQUE NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE "Corso" (
 CREATE TABLE "Insegnamenti" (
   "codice_insegnamento" char(6) PRIMARY KEY,
   "nome" varchar(40) UNIQUE NOT NULL,
-  "anno" tinyint NOT NULL,
+  "anno" smallint NOT NULL,
   "descrizione" text NOT NULL
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE "Calendario" (
   "id_esame" serial PRIMARY KEY,
   "cod_insegnamento" char(6) NOT NULL,
   "data" date NOT NULL,
-  "posti" tinyint NOT NULL,
+  "posti" smallint NOT NULL,
   "aula" varchar(20) NOT NULL
 );
 
@@ -103,13 +103,13 @@ CREATE TABLE "propeduticita" (
 CREATE TABLE "appello" (
   "matricola_stud" char(6) NOT NULL,
   "id_esame" serial NOT NULL,
-  "voto" tinyint NOT NULL
+  "voto" smallint NOT NULL
 );
 
 CREATE TABLE "Appelli_storici" (
   "matricola_stud" char(6) NOT NULL,
   "id_esame" serial NOT NULL,
-  "voto" tinyint NOT NULL
+  "voto" smallint NOT NULL
 );
 
 CREATE INDEX ON "Piano_Didattico" ("cod_corso", "cod_insegnamento");
