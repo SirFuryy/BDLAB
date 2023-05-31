@@ -73,7 +73,7 @@ CREATE TABLE "Corso" (
 CREATE TABLE "Insegnamenti" (
   "codice_insegnamento" char(6) PRIMARY KEY,
   "nome" varchar(40) UNIQUE NOT NULL,
-  "anno" tinyint NOT NULL,
+  "anno" smallint NOT NULL,
   "descrizione" text NOT NULL
 );
 
@@ -81,11 +81,11 @@ CREATE TABLE "Calendario" (
   "id_esame" serial PRIMARY KEY,
   "cod_insegnamento" char(6) NOT NULL,
   "data" date NOT NULL,
-  "posti" tinyint NOT NULL,
+  "posti" smallint NOT NULL,
   "aula" varchar(20) NOT NULL
 );
 
-CREATE TABLE "Piano_Didattico" (
+CREATE TABLE "Piano_didattico" (
   "cod_insegnamento" char(6) NOT NULL,
   "cod_corso" char(6) NOT NULL
 );
@@ -103,13 +103,13 @@ CREATE TABLE "Propeduticita" (
 CREATE TABLE "Appelli" (
   "matricola_stud" char(6) NOT NULL,
   "id_esame" serial NOT NULL,
-  "voto" tinyint NOT NULL
+  "voto" smallint NOT NULL
 );
 
 CREATE TABLE "Appelli_storici" (
   "matricola_stud" char(6) NOT NULL,
   "id_esame" serial NOT NULL,
-  "voto" tinyint NOT NULL
+  "voto" smallint NOT NULL
 );
 
 CREATE INDEX ON "Piano_Didattico" ("cod_corso", "cod_insegnamento");
