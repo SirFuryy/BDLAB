@@ -1,5 +1,5 @@
 CREATE TABLE "Segreteria" (
-  "id_segreteria" serial PRIMARY KEY,
+  "id_segreteria" smallserial PRIMARY KEY,
   "nome" varchar(20) NOT NULL,
   "cognome" varchar(30) NOT NULL,
   "email" varchar(30) UNIQUE NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE "Segreteria" (
 );
 
 CREATE TABLE "Docente" (
-  "id_docente" serial PRIMARY KEY,
+  "id_docente" smallserial PRIMARY KEY,
   "nome" varchar(20) NOT NULL,
   "cognome" varchar(30) NOT NULL,
   "email" varchar(30) UNIQUE NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE "Studente" (
   "codice_fiscale" varchar(16) UNIQUE NOT NULL,
   "domicilio" varchar(70),
   "data_iscrizione" timestamp NOT NULL,
-  "corso_laurea" char(6) NOT NULL
+  "corso_laurea" varchar(6) NOT NULL
 );
 
 CREATE TABLE "Storico_studente" (
@@ -73,7 +73,7 @@ CREATE TABLE "Corso" (
 CREATE TABLE "Insegnamenti" (
   "codice_insegnamento" char(6) PRIMARY KEY,
   "nome" varchar(40) UNIQUE NOT NULL,
-  "anno" smallint NOT NULL,
+  "anno" tinyint NOT NULL,
   "descrizione" text NOT NULL
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE "Calendario" (
   "id_esame" serial PRIMARY KEY,
   "cod_insegnamento" char(6) NOT NULL,
   "data" date NOT NULL,
-  "posti" smallint NOT NULL,
+  "posti" tinyint NOT NULL,
   "aula" varchar(20) NOT NULL
 );
 
@@ -90,58 +90,60 @@ CREATE TABLE "Piano_Didattico" (
   "cod_corso" char(6) NOT NULL
 );
 
-CREATE TABLE "insegna" (
+CREATE TABLE "Insegna" (
   "id_docente" serial NOT NULL,
   "cod_insegnamento" char(6) NOT NULL
 );
 
-CREATE TABLE "propeduticita" (
+CREATE TABLE "Propeduticita" (
   "cod_insegnamento" char(6) NOT NULL,
   "cod_ins_proped" char(6) NOT NULL
 );
 
-CREATE TABLE "appello" (
+CREATE TABLE "Appelli" (
   "matricola_stud" char(6) NOT NULL,
   "id_esame" serial NOT NULL,
-  "voto" smallint NOT NULL
+  "voto" tinyint NOT NULL
 );
 
 CREATE TABLE "Appelli_storici" (
   "matricola_stud" char(6) NOT NULL,
   "id_esame" serial NOT NULL,
-  "voto" smallint NOT NULL
+  "voto" tinyint NOT NULL
 );
 
 CREATE INDEX ON "Piano_Didattico" ("cod_corso", "cod_insegnamento");
 
-CREATE INDEX ON "insegna" ("id_docente", "cod_insegnamento");
+CREATE INDEX ON "Insegna" ("id_docente", "cod_insegnamento");
 
-CREATE INDEX ON "propeduticita" ("cod_insegnamento", "cod_ins_proped");
+CREATE INDEX ON "Propeduticita" ("cod_insegnamento", "cod_ins_proped");
 
-CREATE INDEX ON "appello" ("matricola_stud", "id_esame");
+CREATE INDEX ON "Appelli" ("matricola_stud", "id_esame");
 
 CREATE INDEX ON "Appelli_storici" ("matricola_stud", "id_esame");
 
-ALTER TABLE "Studente" ADD FOREIGN KEY ("corso_laurea") REFERENCES "Corso" ("codice_corso");
+ALTER TABLE "Corso" ADD FOREIGN KEY ("codice_corso") REFERENCES "Studente" ("corso_laurea");
 
 ALTER TABLE "Piano_Didattico" ADD FOREIGN KEY ("cod_corso") REFERENCES "Corso" ("codice_corso");
 
 ALTER TABLE "Piano_Didattico" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
-ALTER TABLE "insegna" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
+ALTER TABLE "Insegna" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
-ALTER TABLE "insegna" ADD FOREIGN KEY ("id_docente") REFERENCES "Docente" ("id_docente");
+ALTER TABLE "Insegna" ADD FOREIGN KEY ("id_docente") REFERENCES "Docente" ("id_docente");
 
-ALTER TABLE "propeduticita" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
+ALTER TABLE "Propeduticita" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
-ALTER TABLE "propeduticita" ADD FOREIGN KEY ("cod_ins_proped") REFERENCES "Insegnamenti" ("codice_insegnamento");
+ALTER TABLE "Propeduticita" ADD FOREIGN KEY ("cod_ins_proped") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
-ALTER TABLE "Calendario" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
+ALTER TABLE "Insegnamenti" ADD FOREIGN KEY ("codice_insegnamento") REFERENCES "Calendario" ("cod_insegnamento");
 
-ALTER TABLE "appello" ADD FOREIGN KEY ("matricola_stud") REFERENCES "Studente" ("matricola");
+ALTER TABLE "Appelli" ADD FOREIGN KEY ("matricola_stud") REFERENCES "Studente" ("matricola");
 
-ALTER TABLE "appello" ADD FOREIGN KEY ("id_esame") REFERENCES "Calendario" ("id_esame");
+ALTER TABLE "Appelli" ADD FOREIGN KEY ("id_esame") REFERENCES "Calendario" ("id_esame");
 
 ALTER TABLE "Appelli_storici" ADD FOREIGN KEY ("matricola_stud") REFERENCES "Storico_studente" ("matricola");
 
 ALTER TABLE "Appelli_storici" ADD FOREIGN KEY ("id_esame") REFERENCES "Calendario" ("id_esame");
+
+ALTER TABLE "Corso" ADD FOREIGN KEY ("codice_corso") REFERENCES "Storico_studente" ("corso_laurea");
