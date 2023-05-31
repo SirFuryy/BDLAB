@@ -124,9 +124,9 @@ CREATE INDEX ON "Appelli_storici" ("matricola_stud", "id_esame");
 
 ALTER TABLE "Corso" ADD FOREIGN KEY ("codice_corso") REFERENCES "Studente" ("corso_laurea");
 
-ALTER TABLE "Piano_Didattico" ADD FOREIGN KEY ("cod_corso") REFERENCES "Corso" ("codice_corso");
+ALTER TABLE "Piano_didattico" ADD FOREIGN KEY ("cod_corso") REFERENCES "Corso" ("codice_corso");
 
-ALTER TABLE "Piano_Didattico" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
+ALTER TABLE "Piano_didattico" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
 ALTER TABLE "Insegna" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
