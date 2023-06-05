@@ -43,7 +43,7 @@ CREATE TABLE "Studente" (
   "codice_fiscale" varchar(16) UNIQUE NOT NULL,
   "domicilio" varchar(70),
   "data_iscrizione" timestamp NOT NULL,
-  "corso_laurea" varchar(6) NOT NULL
+  "corso_laurea" char(6) NOT NULL
 );
 
 CREATE TABLE "Storico_studente" (
@@ -60,7 +60,7 @@ CREATE TABLE "Storico_studente" (
   "domicilio" varchar(70),
   "data_iscrizione" timestamp NOT NULL,
   "data_inizo_inattivita" timestamp NOT NULL,
-  "corso_laurea" varchar(6) NOT NULL
+  "corso_laurea" char(6) NOT NULL
 );
 
 CREATE TABLE "Corso" (
@@ -91,7 +91,7 @@ CREATE TABLE "Piano_didattico" (
 );
 
 CREATE TABLE "Insegna" (
-  "id_docente" serial NOT NULL,
+  "id_docente" smallserial NOT NULL,
   "cod_insegnamento" char(6) NOT NULL
 );
 
