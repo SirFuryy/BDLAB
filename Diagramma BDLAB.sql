@@ -122,7 +122,7 @@ CREATE INDEX ON "Appelli" ("matricola_stud", "id_esame");
 
 CREATE INDEX ON "Storico_appelli" ("matricola_stud", "id_esame");
 
-ALTER TABLE "Corso" ADD FOREIGN KEY ("codice_corso") REFERENCES "Studente" ("corso_laurea");
+ALTER TABLE "Studente" ADD FOREIGN KEY ("corso_laurea") REFERENCES "Corso" ("codice_corso"); /* prima da cambiare */
 
 ALTER TABLE "Piano_didattico" ADD FOREIGN KEY ("cod_corso") REFERENCES "Corso" ("codice_corso");
 
@@ -136,7 +136,7 @@ ALTER TABLE "Propeduticita" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Ins
 
 ALTER TABLE "Propeduticita" ADD FOREIGN KEY ("cod_ins_proped") REFERENCES "Insegnamenti" ("codice_insegnamento");
 
-ALTER TABLE "Insegnamenti" ADD FOREIGN KEY ("codice_insegnamento") REFERENCES "Calendario" ("cod_insegnamento");
+ALTER TABLE "Calendario" ADD FOREIGN KEY ("cod_insegnamento") REFERENCES "Insegnamenti" ("codice_insegnamento"); /* seconda da cambiare */
 
 ALTER TABLE "Appelli" ADD FOREIGN KEY ("matricola_stud") REFERENCES "Studente" ("matricola");
 
@@ -146,4 +146,4 @@ ALTER TABLE "Storico_appelli" ADD FOREIGN KEY ("matricola_stud") REFERENCES "Sto
 
 ALTER TABLE "Storico_appelli" ADD FOREIGN KEY ("id_esame") REFERENCES "Calendario" ("id_esame");
 
-ALTER TABLE "Corso" ADD FOREIGN KEY ("codice_corso") REFERENCES "Storico_studente" ("corso_laurea");
+ALTER TABLE "Storico_studente" ADD FOREIGN KEY ("corso_laurea") REFERENCES "Corso" ("codice_corso"); /* terza da cambiare */
